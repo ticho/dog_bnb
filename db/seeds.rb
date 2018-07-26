@@ -17,9 +17,16 @@ end
              city_id: City.all.sample.id)
 end
 
+# need to come back on this later, a stroll should be able to have several dogs
 # create 20 strolls, making sure that each the dog and dogsitter are in the same city
 20.times do
-  dog = Dog.all.sample
-  Stroll.create(dog_id: dog.id,
-                dogsitter_id: dog.city.dogsitters.sample.id)
+  Stroll.create(dogsitter_id: Dogsitter.all.sample.id)
+end
+
+# populate the strolls with dogs from the same city
+Stroll.all.each do |stroll|
+  city_id = stroll.dogsitter.city_id
+  city = City.find(city_id)
+  stroll.dogs.push(city.dogs.sample(2))
+  stroll.save
 end
