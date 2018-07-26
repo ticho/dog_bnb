@@ -23,6 +23,7 @@
 ### Associations
 - belongs_to :city
 - has_many :dogsitters, through: :strolls
+- has_and_belongs_to_many :strolls
 
 
 ## strolls
@@ -31,8 +32,8 @@
 |dog_id|reference|
 |dogsitter_id|reference|
 ### Associations
-- belongs_to :dog
 - belongs_to :dogsitter
+- has_and_belongs_to_many :dogs
 
 ## cities
 |Column|Type|
@@ -41,6 +42,15 @@
 ### Associations
 - has_many :dogsitters
 - has_many :dogs
+
+## dogs_strolls
+|Column|Type|
+|------|----|
+|dog_id|reference|
+|stroll_id|reference|
+### Associations
+- belongs_to :dog
+- belongs_to :stroll
 
 ## Usage
 
