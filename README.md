@@ -64,10 +64,12 @@ $ rails db:seed
 To make sure that each dog and dogsitter from a stroll are from the same city
 ```ruby
 Stroll.all.each do |stroll|
-  if stroll.dog.city != stroll.dogsitter.city
-    puts "Error"
-  else
-    puts "OK"
+  stroll.dogs.each do |dog|
+    if dog.city != stroll.dogsitter.city
+      puts "Error"
+    else
+      puts "OK"
+    end
   end
 end
 ```
